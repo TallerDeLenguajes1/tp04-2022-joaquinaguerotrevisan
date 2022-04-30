@@ -11,6 +11,7 @@ struct tarea{
 }typedef tarea;
 
 void imprimirTarea(tarea tarea);
+tarea* BuscarTarea(tarea **tarea, short numTarea, char *palabraIdentif);
 
 int main(){
 
@@ -121,4 +122,19 @@ void imprimirTarea(tarea tarea){
     puts(tarea.descripcion);
     printf("   Duracion: %d", tarea.duracion);
 
+}
+
+tarea* BuscarTarea(tarea **tarea, short numTarea, char *palabraIdentif){
+
+    for (short j = 0; j < numTarea; j++)
+    {
+        if (strstr(tarea[j]->descripcion, palabraIdentif) != NULL)
+        {
+            return tarea[j];
+        }
+        
+    }
+    
+    return NULL;
+    
 }
