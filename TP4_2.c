@@ -1,6 +1,10 @@
+// LIBRERIAS ----------------------------------------------------------------------------------------
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+// ESCTRUCTURAS ----------------------------------------------------------------------------------------
 
 struct tarea{
 
@@ -10,11 +14,16 @@ struct tarea{
 
 }typedef tarea;
 
+// FUNCIONES ----------------------------------------------------------------------------------------
+
 void imprimirTarea(tarea tarea);
+tarea* BuscarTarea(tarea **tarea, short numTarea, short id);
+
+// MAIN ----------------------------------------------------------------------------------------
 
 int main(){
 
-    short numTareas = 0, check = 0, realizado = 0;
+    short numTareas = 0, check = 0, realizado = 0, tareaIdentificador = 0;
     tarea** listaTarea;
     tarea** tareasRealizadas;
     char* buffer;
@@ -107,12 +116,13 @@ int main(){
     {
         imprimirTarea(*tareasRealizadas[j]);
     }
-    
 
     free(buffer);
 
     return 0;
 }
+
+// FUNCIONES ----------------------------------------------------------------------------------------
 
 void imprimirTarea(tarea tarea){
 
@@ -121,4 +131,19 @@ void imprimirTarea(tarea tarea){
     puts(tarea.descripcion);
     printf("   Duracion: %d", tarea.duracion);
 
+}
+
+tarea* BuscarTarea(tarea **tarea, short numTarea, short id){
+
+    for (short g = 0; g < numTarea; g++)
+    {
+        if (tarea[g]->tareaId == id)
+        {
+            return tarea[g];
+        }
+        
+    }
+
+    return NULL;
+    
 }
